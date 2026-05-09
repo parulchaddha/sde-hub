@@ -30,31 +30,6 @@ services:
       - key: FRONTEND_URL
         sync: false          # fill with your Vercel URL after deploy
 
-  # ── Celery Worker ────────────────────────────────────────────
-  - type: worker
-    name: sde-hub-worker
-    runtime: docker
-    dockerfilePath: ./backend/Dockerfile.worker
-    dockerContext: ./backend
-    plan: free
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: sde-hub-db
-          property: connectionString
-      - key: REDIS_URL
-        fromService:
-          name: sde-hub-redis
-          type: redis
-          property: connectionString
-      - key: SECRET_KEY
-        fromService:
-          name: sde-hub-api
-          type: web
-          envVarKey: SECRET_KEY
-      - key: OPENAI_API_KEY
-        sync: false
-
   # ── Redis ────────────────────────────────────────────────────
   - type: redis
     name: sde-hub-redis
