@@ -4,8 +4,8 @@ from app.config import settings
 
 celery_app = Celery(
     "sde_hub",
-    broker=settings.REDIS_URL,
-    backend=settings.REDIS_URL,
+    broker=settings.redis_url_fixed,
+    backend=settings.redis_url_fixed,
     include=["app.tasks.poll_feeds"],
 )
 
