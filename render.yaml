@@ -34,10 +34,9 @@ services:
   - type: worker
     name: sde-hub-worker
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: ./backend/Dockerfile.worker
     dockerContext: ./backend
     plan: free
-    startCommand: celery -A app.tasks.celery_app worker --beat --loglevel=info
     envVars:
       - key: DATABASE_URL
         fromDatabase:
