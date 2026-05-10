@@ -18,20 +18,9 @@ services:
         fromDatabase:
           name: sde-hub-db
           property: connectionString
-      - key: REDIS_URL
-        fromService:
-          name: sde-hub-redis
-          type: redis
-          property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: OPENAI_API_KEY
         sync: false          # you fill this in Render dashboard
       - key: FRONTEND_URL
         sync: false          # fill with your Vercel URL after deploy
-
-  # ── Redis ────────────────────────────────────────────────────
-  - type: redis
-    name: sde-hub-redis
-    plan: free
-    ipAllowList: []          # only internal access
